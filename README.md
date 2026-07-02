@@ -11,6 +11,7 @@ AIML-Intern-at-code-alpha
 ├── Task 2
 │   ├── Exploratory Data Analysis.py
 │   ├── Titanic-Dataset.csv
+
 │   ├── README.md
 │   ├── Output Figure_1.png
 │   ├── Output Figure_2.png
