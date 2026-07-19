@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Ranker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>🤖 AI Resume Ranker</h1>
+
+        <p>
+            Upload your resume, paste the job description and let AI evaluate
+            your resume just like an Applicant Tracking System (ATS).
+        </p>
+
+    </div>
+
+    <div class="main-card">
+
+        <form action="/upload"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <div class="section">
+
+                <h2>📄 Upload Resume</h2>
+
+                <label class="upload-box">
+
+                    <input
+                        type="file"
+                        name="resume"
+                        accept=".pdf"
+                        required>
+
+                    <div>
+
+                        <h3>📁 Choose Resume</h3>
+
+                        <p>
+                            PDF files only
+                        </p>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+            <div class="section">
+
+                <h2>📝 Job Description</h2>
+
+                <textarea
+                    name="job_description"
+                    rows="12"
+                    placeholder="Paste the complete Job Description here..."
+                    required></textarea>
+
+            </div>
+
+            <button class="submit-btn" type="submit">
+
+                🚀 Analyze Resume
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+
+            <h3>🤖 AI Matching</h3>
+
+            <p>
+                Compare resumes using Natural Language Processing and TF-IDF.
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <h3>📊 ATS Score</h3>
+
+            <p>
+                Get an AI-powered resume compatibility score instantly.
+            </p>
+
+        </div>
+
+        <div class="feature">
+
+            <h3>✅ Skill Analysis</h3>
+
+            <p>
+                Discover matched skills and missing skills automatically.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

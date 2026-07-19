@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ResumeAI Pro — Analysis Report</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+               RESUME AI PRO — ULTRA PREMIUM DASHBOARD
+               Dark • Glassmorphism • AI Analytics • Smooth Motion
+               ============================================================ */
+
+        /* ---------- Reset & Variables ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-primary: #050816;
+            --bg-card: rgba(17, 24, 39, 0.65);
+            --border-glass: rgba(255, 255, 255, 0.06);
+            --border-glass-hover: rgba(255, 255, 255, 0.12);
+            --shadow-glass: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 30px rgba(37, 99, 235, 0.15);
+
+            --primary: #2563EB;
+            --primary-light: #60A5FA;
+            --primary-dark: #1D4ED8;
+            --primary-glow: rgba(37, 99, 235, 0.35);
+
+            --success: #22C55E;
+            --success-soft: rgba(34, 197, 94, 0.12);
+            --warning: #F59E0B;
+            --warning-soft: rgba(245, 158, 11, 0.12);
+            --danger: #EF4444;
+            --danger-soft: rgba(239, 68, 68, 0.12);
+
+            --text: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
+            --max-width: 1240px;
+
+            --transition: 0.3s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ---------- Ambient Background ---------- */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 20% 30%, rgba(37, 99, 235, 0.10) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 80% 70%, rgba(96, 165, 250, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 50% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            animation: ambientPulse 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes ambientPulse {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        /* subtle grid */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+            background-size: 64px 64px;
+            pointer-events: none;
+            animation: gridDrift 30s linear infinite;
+        }
+
+        @keyframes gridDrift {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 64px 64px;
+            }
+        }
+
+        /* ---------- Scrollbar ---------- */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: var(--radius-full);
+        }
+
+        /* ---------- Layout ---------- */
+        .app {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+
+        /* ---------- Nav ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(5, 8, 22, 0.75);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 14px 0;
+            margin: 0 -24px 32px;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .nav-brand svg {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .nav-brand strong {
+            background: linear-gradient(135deg, #3B82F6, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            font-family: var(--font);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn--primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+        .btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn--secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .btn--secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn--nav {
+            padding: 8px 18px;
+            font-size: 0.82rem;
+        }
+
+        .btn--action {
+            padding: 14px 36px;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        /* ---------- Glass Card ---------- */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-glass);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--border-glass-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glass), var(--shadow-glow);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 24px 0;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card-header .badge {
+            margin-left: auto;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        .card-body {
+            padding: 16px 24px 24px;
+        }
+
+        .card-divider {
+            height: 1px;
+            background: var(--border-glass);
+            margin: 0 24px;
+        }
+
+        /* ---------- Grid ---------- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            padding: 28px 32px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(17, 24, 39, 0.5) 100%);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            border-radius: var(--radius-xl);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            background: linear-gradient(to right, #fff, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-top: 4px;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px 48px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-meta-item .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+        .hero-meta-item .value {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        /* ---------- ATS Score Ring ---------- */
+        .score-ring-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .score-ring {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            flex-shrink: 0;
+        }
+
+        .score-ring svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+
+        .score-ring .bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.06);
+            stroke-width: 10;
+        }
+
+        .score-ring .progress {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke: url(#ringGrad);
+            transition: stroke-dashoffset 1.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+
+        .score-ring .center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-ring .center .pct {
+            font-size: 2.6rem;
+            font-weight: 900;
+            background: linear-gradient(to bottom, #4ADE80, #22C55E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .score-ring .center .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .score-ring .center .sub {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* ---------- Metric Chips ---------- */
+        .metric-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .metric-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 10px 18px;
+            transition: var(--transition);
+        }
+
+        .metric-chip:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--border-glass-hover);
+        }
+
+        .metric-chip .num {
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .metric-chip .num.green {
+            color: var(--success);
+        }
+        .metric-chip .num.red {
+            color: var(--danger);
+        }
+        .metric-chip .num.blue {
+            color: var(--primary-light);
+        }
+        .metric-chip .desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ---------- Skill Chips ---------- */
+        .skill-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .skill-chip {
+            padding: 5px 16px;
+            border-radius: var(--radius-full);
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .skill-chip.found {
+            background: var(--success-soft);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            color: #4ADE80;
+        }
+        .skill-chip.found:hover {
+            transform: scale(1.04);
+            background: rgba(34, 197, 94, 0.18);
+        }
+
+        .skill-chip.missing {
+            background: var(--danger-soft);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #F87171;
+        }
+        .skill-chip.missing:hover {
+            transform: scale(1.04);
+            background: rgba(239, 68, 68, 0.18);
+        }
+
+        /* ---------- Progress Bar (Experience / Education) ---------- */
+        .progress-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .progress-block .top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .progress-block .top .score {
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-track .bar {
+            height: 100%;
+            border-radius: var(--radius-full);
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+
+        .progress-track .bar.green {
+            background: linear-gradient(90deg, #22C55E, #4ADE80);
+        }
+        .progress-track .bar.orange {
+            background: linear-gradient(90deg, #F59E0B, #FBBF24);
+        }
+        .progress-track .bar.red {
+            background: linear-gradient(90deg, #EF4444, #F87171);
+        }
+
+        /* ---------- Role Chips ---------- */
+        .role-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .role-chip {
+            padding: 8px 22px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: rgba(37, 99, 235, 0.10);
+            border: 1px solid rgba(37, 99, 235, 0.20);
+            color: var(--primary-light);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .role-chip:hover {
+            background: rgba(37, 99, 235, 0.20);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        /* ---------- Salary Cards ---------- */
+        .salary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .salary-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            text-align: center;
+            border: 1px solid var(--border-glass);
+            transition: var(--transition);
+        }
+
+        .salary-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+            border-color: var(--border-glass-hover);
+        }
+
+        .salary-item .level {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+        }
+
+        .salary-item .amount {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #4ADE80;
+            margin-top: 2px;
+        }
+
+        /* ---------- Roadmap ---------- */
+        .roadmap-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .roadmap-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .roadmap-list li:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateX(6px);
+        }
+
+        .roadmap-list .step-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
+
+        .roadmap-list .step-text {
+            padding-top: 2px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ---------- Suggestions ---------- */
+        .suggestions-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .suggestions-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 14px;
+            background: rgba(96, 165, 250, 0.04);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--primary-light);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .suggestions-list .icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ---------- Action Bar ---------- */
+        .action-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            padding: 24px 0 8px;
+            border-top: 1px solid var(--border-glass);
+            margin-top: 12px;
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            text-align: center;
+            padding: 28px 0 12px;
+            border-top: 1px solid var(--border-glass);
+            margin-top: 32px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer strong {
+            color: var(--text-secondary);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1024px) {
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .salary-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app {
+                padding: 0 16px 32px;
+            }
+            .nav {
+                padding: 10px 16px;
+                margin: 0 -16px 24px;
+            }
+            .nav-inner {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .nav-actions {
+                justify-content: stretch;
+            }
+            .nav-actions .btn {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 20px;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .salary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .score-ring-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-body {
+                padding: 12px 16px 18px;
+            }
+            .card-header {
+                padding: 16px 16px 0;
+                font-size: 1rem;
+            }
+
+            .hero-meta {
+                gap: 12px 24px;
+            }
+            .btn--action {
+                min-width: 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .score-ring {
+                width: 130px;
+                height: 130px;
+            }
+            .score-ring .center .pct {
+                font-size: 2rem;
+            }
+            .metric-chips {
+                flex-direction: column;
+                width: 100%;
+            }
+            .metric-chip {
+                justify-content: center;
+            }
+        }
+
+        /* ---------- Utility ---------- */
+        .mt-1 {
+            margin-top: 8px;
+        }
+        .mt-2 {
+            margin-top: 16px;
+        }
+        .mt-3 {
+            margin-top: 24px;
+        }
+        .mb-1 {
+            margin-bottom: 8px;
+        }
+        .mb-2 {
+            margin-bottom: 16px;
+        }
+        .gap-2 {
+            gap: 16px;
+        }
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        /* print-friendly */
+        @media print {
+            body::before,
+            body::after {
+                display: none !important;
+            }
+            .nav {
+                position: relative !important;
+                background: #0a0e1a !important;
+            }
+            .card {
+                break-inside: avoid;
+                box-shadow: none !important;
+                border-color: rgba(255, 255, 255, 0.1) !important;
+            }
+            .btn {
+                display: none !important;
+            }
+            .action-bar {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ====== NAV ====== -->
+        <nav class="nav" role="banner">
+            <div class="nav-inner">
+                <a href="#" class="nav-brand">
+                    <svg viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L20.5 12L30 14L22 21.5L23.5 31L16 26L8.5 31L10 21.5L2 14L11.5 12L16 2Z" fill="url(#navGrad)" />
+                        <defs>
+                            <linearGradient id="navGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#3B82F6"/>
+                                <stop offset="1" stop-color="#A78BFA"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>ResumeAI <strong>Pro</strong></span>
+                </a>
+                <div class="nav-actions">
+                    <button class="btn btn--secondary btn--nav" onclick="window.print()">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5.5h10V11H3V5.5z"/><path d="M3 8H1.5v4H3v2h10v-2h1.5V8H13"/><path d="M5 2.5h6V5H5z"/></svg>
+                        Download Report
+                    </button>
+                    <a href="{{ url_for('wizard') }}" class="btn btn--primary btn--nav">Analyze Another</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ====== HERO ====== -->
+        <section class="hero card">
+            <h1>Resume Analysis Report</h1>
+            <p>Your resume has been analyzed using our AI-powered ATS engine.</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="label">Candidate</span>
+                    <span class="value">{{ candidate_name }}</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="label">Target Company</span>
+                    <span class="value">{{ target_company }}</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="label">Target Role</span>
+                    <span class="value">{{ target_role }}</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="label">Analysis Date</span>
+                    <span class="value">{{ analysis_date }}</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== ATS SCORE + QUICK METRICS ====== -->
+        <div class="grid-2" style="margin-bottom:24px;">
+            <!-- Score Ring -->
+            <div class="card">
+                <div class="card-header">
+                    ATS Compatibility Score
+                    <span class="badge">Out of 100</span>
+                </div>
+                <div class="card-body">
+                    <div class="score-ring-wrapper">
+                        <div class="score-ring" id="atsRing">
+                            <svg viewBox="0 0 120 120">
+                                <defs>
+                                    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#22C55E" />
+                                        <stop offset="100%" stop-color="#4ADE80" />
+                                    </linearGradient>
+                                </defs>
+                                <circle class="bg" cx="60" cy="60" r="52" />
+                                <circle class="progress" id="ringProgress" cx="60" cy="60" r="52"
+                                stroke-dasharray="326.726"
+                                stroke-dashoffset="326.726" />
+                            </svg>
+                            <div class="center">
+                                <span class="pct" id="scorePct">{{ ats_score }}%</span>
+                                <span class="label">out of 100</span>
+                                <span class="sub">
+                                    {% if ats_score >= 80 %}Excellent ⚡
+                                    {% elif ats_score >= 60 %}Good 👍
+                                    {% else %}Needs improvement 🚀
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="metric-chips">
+                            <div class="metric-chip">
+                                <span class="num blue">{{ job_match }}%</span>
+                                <span class="desc">Job Match</span>
+                            </div>
+                            <div class="metric-chip">
+                                <span class="num green">{{ skills_found|length }}</span>
+                                <span class="desc">Skills Found</span>
+                            </div>
+                            <div class="metric-chip">
+                                <span class="num red">{{ missing_skills|length }}</span>
+                                <span class="desc">Missing Skills</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="card">
+                <div class="card-header">
+                    Key Insights
+                    <span class="badge">AI Generated</span>
+                </div>
+                <div class="card-body" style="display:flex;flex-direction:column;gap:14px;">
+                    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border-glass);">
+                        <span style="color:var(--text-muted);">Total Keywords Analyzed</span>
+                        <span style="font-weight:700;">{{ matched_keywords|length + missing_keywords|length }}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border-glass);">
+                        <span style="color:var(--text-muted);">Matched Keywords</span>
+                        <span style="font-weight:700;color:#4ADE80;">{{ matched_keywords|length }}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border-glass);">
+                        <span style="color:var(--text-muted);">Missing Keywords</span>
+                        <span style="font-weight:700;color:#F87171;">{{ missing_keywords|length }}</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:6px 0;">
+                        <span style="color:var(--text-muted);">Overall ATS Score</span>
+                        <span style="font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#4ADE80,#22C55E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">{{ ats_score }}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== SKILL MATCH ====== -->
+        <div class="card" style="margin-bottom:24px;">
+            <div class="card-header">
+                🧠 Skill Match Analysis
+                <span class="badge">{{ skills_found|length }} found · {{ missing_skills|length }} missing</span>
+            </div>
+            <div class="card-body">
+                <div class="grid-2">
+                    <div>
+                        <div style="font-weight:600;color:#4ADE80;margin-bottom:6px;">✓ Skills Found</div>
+                        <div class="skill-chips">
+                            {% for skill in skills_found %}
+                            <span class="skill-chip found">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-weight:600;color:#F87171;margin-bottom:6px;">✗ Missing Skills</div>
+                        <div class="skill-chips">
+                            {% for skill in missing_skills %}
+                            <span class="skill-chip missing">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== EXPERIENCE + EDUCATION ====== -->
+        <div class="grid-2" style="margin-bottom:24px;">
+            <div class="card">
+                <div class="card-header">
+                    💼 Experience Analysis
+                    <span class="badge">Relevance</span>
+                </div>
+                <div class="card-body">
+                    <div class="progress-block">
+                        <div class="top">
+                            <span>Experience Relevance</span>
+                            <span class="score" style="color:{% if experience_score >= 70 %}#4ADE80{% elif experience_score >= 50 %}#FBBF24{% else %}#F87171{% endif %};">
+                                {{ experience_score }}/100
+                            </span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="bar {% if experience_score >= 70 %}green{% elif experience_score >= 50 %}orange{% else %}red{% endif %}"
+                            style="width:{{ experience_score }}%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top:12px;font-size:0.85rem;color:var(--text-muted);">
+                        {% if experience_score >= 70 %}
+                        Strong experience alignment with the target role.
+                        {% elif experience_score >= 50 %}
+                        Moderate relevance — consider highlighting key achievements.
+                        {% else %}
+                        Low relevance — tailor your experience to the job description.
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    🎓 Education
+                    <span class="badge">Score</span>
+                </div>
+                <div class="card-body">
+                    <div class="progress-block">
+                        <div class="top">
+                            <span>Education Match</span>
+                            <span class="score" style="color:{% if education_score >= 80 %}#4ADE80{% elif education_score >= 60 %}#FBBF24{% else %}#F87171{% endif %};">
+                                {{ education_score }}/100
+                            </span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="bar {% if education_score >= 80 %}green{% elif education_score >= 60 %}orange{% else %}red{% endif %}"
+                            style="width:{{ education_score }}%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-top:12px;font-size:0.85rem;color:var(--text-muted);">
+                        {% if education_score >= 80 %}
+                        Excellent educational background for this role.
+                        {% elif education_score >= 60 %}
+                        Good — consider adding relevant certifications.
+                        {% else %}
+                        Consider upskilling or highlighting relevant coursework.
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== STRENGTHS & WEAKNESSES ====== -->
+        <div class="grid-2" style="margin-bottom:24px;">
+            <div class="card">
+                <div class="card-header" style="color:#4ADE80;">✅ Strengths</div>
+                <div class="card-body">
+                    <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+                        {% for item in strengths %}
+                        <li style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border-glass);font-size:0.95rem;color:var(--text-secondary);">
+                            <span style="color:#4ADE80;font-weight:700;">✓</span> {{ item }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" style="color:#F87171;">⚠️ Weaknesses</div>
+                <div class="card-body">
+                    <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+                        {% for item in weaknesses %}
+                        <li style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border-glass);font-size:0.95rem;color:var(--text-secondary);">
+                            <span style="color:#F87171;font-weight:700;">✗</span> {{ item }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== AI SUGGESTIONS ====== -->
+        <div class="card" style="margin-bottom:24px;">
+            <div class="card-header">
+                💡 AI-Powered Suggestions
+                <span class="badge">Actionable</span>
+            </div>
+            <div class="card-body">
+                <ul class="suggestions-list">
+                    {% for suggestion in suggestions %}
+                    <li>
+                        <span class="icon">💡</span>
+                        {{ suggestion }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- ====== BEST MATCHING ROLES ====== -->
+        <div class="card" style="margin-bottom:24px;">
+            <div class="card-header">
+                🎯 Best Matching Roles
+                <span class="badge">AI Recommended</span>
+            </div>
+            <div class="card-body">
+                <div class="role-chips">
+                    {% for role in career_roles %}
+                    <span class="role-chip">{{ role }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== SALARY RANGE ====== -->
+        <div class="card" style="margin-bottom:24px;">
+            <div class="card-header">
+                💰 Estimated Salary Range
+                <span class="badge">Market Data</span>
+            </div>
+            <div class="card-body">
+                <div class="salary-grid">
+                    <div class="salary-item">
+                        <div class="level">Entry Level</div>
+                        <div class="amount">${{ salary_range.entry }}</div>
+                    </div>
+                    <div class="salary-item">
+                        <div class="level">Mid Level</div>
+                        <div class="amount">${{ salary_range.mid }}</div>
+                    </div>
+                    <div class="salary-item">
+                        <div class="level">Senior Level</div>
+                        <div class="amount">${{ salary_range.senior }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== ROADMAP ====== -->
+        <div class="card" style="margin-bottom:24px;">
+            <div class="card-header">
+                🗺️ Your AI Career Roadmap
+                <span class="badge">5 Steps</span>
+            </div>
+            <div class="card-body">
+                <ol class="roadmap-list">
+                    {% for step in roadmap %}
+                    <li>
+                        <span class="step-num">{{ loop.index }}</span>
+                        <span class="step-text">{{ step }}</span>
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+
+        <!-- ====== ACTION BAR ====== -->
+        <div class="action-bar">
+            <button class="btn btn--primary btn--action" onclick="window.print()">
+                <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5.5h10V11H3V5.5z"/><path d="M3 8H1.5v4H3v2h10v-2h1.5V8H13"/><path d="M5 2.5h6V5H5z"/></svg>
+                Download PDF Report
+            </button>
+            <a href="{{ url_for('wizard') }}" class="btn btn--secondary btn--action">Analyze Another Resume</a>
+        </div>
+
+        <!-- ====== FOOTER ====== -->
+        <footer class="footer">
+            Powered by <strong>ResumeAI Pro</strong> — Built using advanced AI
+        </footer>
+
+    </div>
+
+    <!-- ====== RING ANIMATION SCRIPT ====== -->
+    <script>
+        (function() {
+            'use strict';
+
+            const ring = document.getElementById('ringProgress');
+            const scorePct = document.getElementById('scorePct');
+            if (!ring) return;
+
+            // read percentage from the DOM
+            const pctText = scorePct ? scorePct.textContent.replace('%', '').trim() : '42';
+            const pct = Math.min(100, Math.max(0, parseFloat(pctText) || 42));
+
+            const circumference = 2 * Math.PI * 52; // r=52
+            const offset = circumference - (pct / 100) * circumference;
+
+            // set initial state (hidden) then animate after a tiny delay
+            ring.style.strokeDashoffset = circumference;
+            ring.style.transition = 'none';
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    ring.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.2, 0.9, 0.3, 1)';
+                    ring.style.strokeDashoffset = offset;
+                });
+            });
+
+            // also animate progress bars if any
+            document.querySelectorAll('.progress-track .bar').forEach(bar => {
+                const target = bar.style.width;
+                bar.style.width = '0%';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        bar.style.transition = 'width 1.2s cubic-bezier(0.2, 0.9, 0.3, 1)';
+                        bar.style.width = target;
+                    });
+                });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ResumeAI Pro — Your AI Career Coach. Analyze, improve, and optimize your resume with advanced AI-powered insights.">
+    <meta name="theme-color" content="#050816">
+    <title>ResumeAI Pro — AI Career Coach | Resume Analysis Wizard</title>
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wizard.css') }}">
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/wizard.js') }}" defer></script>
+</head>
+<body class="wizard-body">
+    <!-- ============================================ -->
+    <!-- BACKGROUND DECORATIVE ELEMENTS               -->
+    <!-- ============================================ -->
+    <div class="bg-ambient" aria-hidden="true">
+        <div class="bg-blob bg-blob--primary"></div>
+        <div class="bg-blob bg-blob--accent"></div>
+        <div class="bg-blob bg-blob--subtle"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MAIN WIZARD CONTAINER                        -->
+    <!-- ============================================ -->
+    <div class="wizard-app-container">
+        <div class="wizard-card" role="main" aria-label="Resume Analysis Wizard">
+
+            <!-- ===================================== -->
+            <!-- LEFT SIDEBAR                          -->
+            <!-- ===================================== -->
+            <aside class="wizard-sidebar" aria-label="Wizard Progress">
+                <!-- Logo & Brand -->
+                <div class="sidebar-brand">
+                    <div class="brand-logo-wrapper">
+                        <svg
+                            class="brand-logo-icon"
+                            viewBox="0 0 36 36"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <defs>
+                                <linearGradient id="logoGrad" x1="4" y1="4" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#2563EB"/>
+                                    <stop offset="0.5" stop-color="#60A5FA"/>
+                                    <stop offset="1" stop-color="#818CF8"/>
+                                </linearGradient>
+                                <filter id="logoGlow">
+                                    <feGaussianBlur stdDeviation="1.8" result="blur"/>
+                                    <feMerge>
+                                        <feMergeNode in="blur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <path
+                                d="M18 4L22.5 13.5L32 16L24 23.5L25.5 33L18 28L10.5 33L12 23.5L4 16L13.5 13.5L18 4Z"
+                                fill="url(#logoGrad)"
+                                filter="url(#logoGlow)"
+                                stroke="none"
+                            />
+                            <circle cx="18" cy="18" r="5" fill="#050816" opacity="0.6"/>
+                            <circle cx="18" cy="18" r="2.2" fill="url(#logoGrad)"/>
+                        </svg>
+                    </div>
+                    <div class="brand-text-group">
+                        <span class="brand-name">ResumeAI <span class="brand-name--highlight">Pro</span></span>
+                        <span class="brand-tagline">Your AI Career Coach</span>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="sidebar-divider" aria-hidden="true"></div>
+
+                <!-- Progress Indicator -->
+                <nav class="step-progress-nav" aria-label="Wizard Steps">
+                    <ol class="step-list">
+                        <!-- Step 1 -->
+                        <li class="step-item step-item--active" data-step="1" data-step-nav="1">
+                            <button type="button" class="step-trigger" data-step-target="1" aria-current="step">
+                                <span class="step-indicator">
+                                    <span class="step-number">1</span>
+                                    <span class="step-check">
+                                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                            <path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="step-label-group">
+                                    <span class="step-title">Candidate Details</span>
+                                    <span class="step-subtitle">Personal &amp; professional info</span>
+                                </span>
+                            </button>
+                        </li>
+
+                        <!-- Step 2 -->
+                        <li class="step-item" data-step="2" data-step-nav="2">
+                            <button type="button" class="step-trigger" data-step-target="2" disabled>
+                                <span class="step-indicator">
+                                    <span class="step-number">2</span>
+                                    <span class="step-check">
+                                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                            <path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="step-label-group">
+                                    <span class="step-title">Resume Upload</span>
+                                    <span class="step-subtitle">Upload your latest resume</span>
+                                </span>
+                            </button>
+                        </li>
+
+                        <!-- Step 3 -->
+                        <li class="step-item" data-step="3" data-step-nav="3">
+                            <button type="button" class="step-trigger" data-step-target="3" disabled>
+                                <span class="step-indicator">
+                                    <span class="step-number">3</span>
+                                    <span class="step-check">
+                                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                            <path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="step-label-group">
+                                    <span class="step-title">Job Details</span>
+                                    <span class="step-subtitle">Target position &amp; description</span>
+                                </span>
+                            </button>
+                        </li>
+
+                        <!-- Step 4 -->
+                        <li class="step-item" data-step="4" data-step-nav="4">
+                            <button type="button" class="step-trigger" data-step-target="4" disabled>
+                                <span class="step-indicator">
+                                    <span class="step-number">4</span>
+                                    <span class="step-check">
+                                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                            <path d="M3 8.5L6.5 12L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="step-label-group">
+                                    <span class="step-title">Review &amp; Analyze</span>
+                                    <span class="step-subtitle">Confirm and run AI analysis</span>
+                                </span>
+                            </button>
+                        </li>
+                    </ol>
+
+                    <!-- Animated progress bar -->
+                    <div class="progress-track" aria-hidden="true">
+                        <div class="progress-fill" id="progressFill" style="--progress: 0%;"></div>
+                    </div>
+                </nav>
+
+                <!-- Sidebar Footer -->
+                <div class="sidebar-footer">
+                    <div class="sidebar-badge">
+                        <svg class="badge-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M10 2L12.5 7.5L18 9L14 13.5L15 19L10 16L5 19L6 13.5L2 9L7.5 7.5L10 2Z" fill="currentColor" opacity="0.7"/>
+                        </svg>
+                        <span>Powered by Advanced AI</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ===================================== -->
+            <!-- RIGHT CONTENT AREA                    -->
+            <!-- ===================================== -->
+            <main class="wizard-content">
+                <form
+    id="wizardForm"
+    class="wizard-form"
+    action="/save-upload"
+    method="POST"
+    enctype="multipart/form-data"
+    novalidate
+>
+                    <!-- Hidden CSRF token placeholder for Flask -->
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() if csrf_token else '' }}">
+
+                    <!-- ================================= -->
+                    <!-- STEP 1: CANDIDATE DETAILS         -->
+                    <!-- ================================= -->
+                    <fieldset class="step-panel step-panel--active" id="stepPanel1" data-step-panel="1">
+                        <legend class="step-panel-legend">Candidate Details</legend>
+                        <div class="step-panel-inner">
+                            <div class="step-header">
+                                <h2 class="step-heading">Tell us about yourself</h2>
+                                <p class="step-description">We'll use this information to tailor your resume analysis and career recommendations.</p>
+                            </div>
+
+                            <div class="form-grid form-grid--two-col">
+                                <!-- Full Name -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="fullName" name="full_name" class="form-input" placeholder=" " required aria-required="true">
+                                    <label for="fullName" class="form-label">Full Name <span class="label-required">*</span></label>
+                                    <span class="input-error-msg" role="alert"></span>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="input-wrapper">
+                                    <input type="email" id="email" name="email" class="form-input" placeholder=" " required aria-required="true">
+                                    <label for="email" class="form-label">Email Address <span class="label-required">*</span></label>
+                                    <span class="input-error-msg" role="alert"></span>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="input-wrapper">
+                                    <input type="tel" id="phone" name="phone" class="form-input" placeholder=" ">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                </div>
+
+                                <!-- Current Location -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="currentLocation" name="current_location" class="form-input" placeholder=" ">
+                                    <label for="currentLocation" class="form-label">Current Location</label>
+                                </div>
+
+                                <!-- LinkedIn -->
+                                <div class="input-wrapper">
+                                    <input type="url" id="linkedinUrl" name="linkedin_url" class="form-input" placeholder=" ">
+                                    <label for="linkedinUrl" class="form-label">LinkedIn URL</label>
+                                </div>
+
+                                <!-- GitHub -->
+                                <div class="input-wrapper">
+                                    <input type="url" id="githubUrl" name="github_url" class="form-input" placeholder=" ">
+                                    <label for="githubUrl" class="form-label">GitHub URL</label>
+                                </div>
+
+                                <!-- Portfolio -->
+                                <div class="input-wrapper">
+                                    <input type="url" id="portfolioUrl" name="portfolio_url" class="form-input" placeholder=" ">
+                                    <label for="portfolioUrl" class="form-label">Portfolio Website</label>
+                                </div>
+
+                                <!-- Experience Level -->
+                                <div class="input-wrapper input-wrapper--select">
+                                    <select id="experienceLevel" name="experience_level" class="form-input form-select" required aria-required="true">
+                                        <option value="" disabled selected></option>
+                                        <option value="entry">Entry Level (0-2 yrs)</option>
+                                        <option value="mid">Mid Level (3-5 yrs)</option>
+                                        <option value="senior">Senior Level (6-10 yrs)</option>
+                                        <option value="lead">Lead / Staff (10+ yrs)</option>
+                                        <option value="executive">Executive / C-Suite</option>
+                                    </select>
+                                    <label for="experienceLevel" class="form-label">Experience Level <span class="label-required">*</span></label>
+                                    <span class="select-chevron" aria-hidden="true">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </div>
+
+                                <!-- Highest Qualification -->
+                                <div class="input-wrapper input-wrapper--select">
+                                    <select id="highestQualification" name="highest_qualification" class="form-input form-select">
+                                        <option value="" disabled selected></option>
+                                        <option value="high-school">High School / GED</option>
+                                        <option value="associate">Associate Degree</option>
+                                        <option value="bachelor">Bachelor's Degree</option>
+                                        <option value="master">Master's Degree</option>
+                                        <option value="phd">PhD / Doctorate</option>
+                                        <option value="bootcamp">Bootcamp / Certification</option>
+                                    </select>
+                                    <label for="highestQualification" class="form-label">Highest Qualification</label>
+                                    <span class="select-chevron" aria-hidden="true">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </div>
+
+                                <!-- Preferred Company -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="preferredCompany" name="preferred_company" class="form-input" placeholder=" ">
+                                    <label for="preferredCompany" class="form-label">Preferred Company</label>
+                                </div>
+
+                                <!-- Preferred Job Role -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="preferredJobRole" name="preferred_job_role" class="form-input" placeholder=" ">
+                                    <label for="preferredJobRole" class="form-label">Preferred Job Role</label>
+                                </div>
+
+                                <!-- Expected Salary -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="expectedSalary" name="expected_salary" class="form-input" placeholder=" ">
+                                    <label for="expectedSalary" class="form-label">Expected Salary (e.g. $120,000)</label>
+                                </div>
+                            </div>
+
+                            <!-- Career Goal -->
+                            <div class="input-wrapper input-wrapper--textarea">
+                                <textarea id="careerGoal" name="career_goal" class="form-input form-textarea" rows="3" placeholder=" "></textarea>
+                                <label for="careerGoal" class="form-label">Career Goal</label>
+                            </div>
+
+                            <!-- Professional Summary -->
+                            <div class="input-wrapper input-wrapper--textarea">
+                                <textarea id="professionalSummary" name="professional_summary" class="form-input form-textarea" rows="4" placeholder=" "></textarea>
+                                <label for="professionalSummary" class="form-label">Professional Summary <span class="label-optional">(optional)</span></label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- ================================= -->
+                    <!-- STEP 2: RESUME UPLOAD             -->
+                    <!-- ================================= -->
+                    <fieldset class="step-panel" id="stepPanel2" data-step-panel="2" disabled>
+                        <legend class="step-panel-legend">Resume Upload</legend>
+                        <div class="step-panel-inner">
+                            <div class="step-header">
+                                <h2 class="step-heading">Upload your resume</h2>
+                                <p class="step-description">Drag and drop your resume file or click to browse. We support PDF, DOCX, and TXT formats.</p>
+                            </div>
+
+                            <!-- Drop Zone -->
+                            <div class="upload-zone" id="uploadZone" role="button" tabindex="0" aria-label="Upload resume file">
+                                <div class="upload-zone-content">
+                                    <div class="upload-icon-wrapper">
+                                        <svg class="upload-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                                            <rect x="8" y="4" width="32" height="40" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                            <path d="M16 20L24 12L32 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <line x1="24" y1="12" x2="24" y2="30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                                            <line x1="12" y1="36" x2="36" y2="36" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                                        </svg>
+                                    </div>
+                                    <div class="upload-text-group">
+                                        <span class="upload-primary-text">
+                                            <strong>Drag &amp; drop</strong> your resume here
+                                        </span>
+                                        <span class="upload-secondary-text">or click to browse files</span>
+                                    </div>
+                                    <div class="upload-formats">
+                                        <span class="format-badge">PDF</span>
+                                        <span class="format-badge">DOCX</span>
+                                        <span class="format-badge">TXT</span>
+                                    </div>
+                                    <p class="upload-size-hint">Maximum file size: 10 MB</p>
+                                </div>
+                                <input
+                                    type="file"
+                                    id="resumeInput"
+                                    name="resume"
+                                    class="upload-input-hidden"
+                                    accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
+                                    required
+                                    aria-required="true"
+                                >
+                            </div>
+
+                            <!-- Uploaded File Info (hidden by default) -->
+                            <div class="uploaded-file-info" id="uploadedFileInfo" hidden>
+                                <div class="file-info-card">
+                                    <div class="file-info-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                            <rect x="3" y="1" width="18" height="22" rx="3" stroke="currentColor" stroke-width="1.8"/>
+                                            <line x1="7" y1="8" x2="17" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                            <line x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                            <line x1="7" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="file-info-details">
+                                        <span class="file-info-name" id="fileNameDisplay">resume.pdf</span>
+                                        <span class="file-info-size" id="fileSizeDisplay">2.4 MB</span>
+                                    </div>
+                                    <div class="file-info-success">
+                                        <svg viewBox="0 0 20 20" fill="none" aria-label="Upload successful">
+                                            <circle cx="10" cy="10" r="9" stroke="#22C55E" stroke-width="1.5" fill="rgba(34,197,94,0.12)"/>
+                                            <path d="M6 10.5L8.5 13L14 7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <button type="button" class="file-change-btn" id="changeFileBtn" aria-label="Change uploaded file">
+                                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                            <path d="M2 11V14H14V11M8 2V11M8 2L4 6M8 2L12 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        Change file
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- ================================= -->
+                    <!-- STEP 3: JOB DETAILS               -->
+                    <!-- ================================= -->
+                    <fieldset class="step-panel" id="stepPanel3" data-step-panel="3" disabled>
+                        <legend class="step-panel-legend">Job Details</legend>
+                        <div class="step-panel-inner">
+                            <div class="step-header">
+                                <h2 class="step-heading">Target job details</h2>
+                                <p class="step-description">Tell us about the role you're aiming for. This helps our AI provide highly targeted recommendations.</p>
+                            </div>
+
+                            <div class="form-grid form-grid--two-col">
+                                <!-- Target Company -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="targetCompany" name="target_company" class="form-input" placeholder=" " required aria-required="true">
+                                    <label for="targetCompany" class="form-label">Target Company <span class="label-required">*</span></label>
+                                </div>
+
+                                <!-- Target Role -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="targetRole" name="target_role" class="form-input" placeholder=" " required aria-required="true">
+                                    <label for="targetRole" class="form-label">Target Role <span class="label-required">*</span></label>
+                                </div>
+
+                                <!-- Job Type -->
+                                <div class="input-wrapper input-wrapper--select">
+                                    <select id="jobType" name="job_type" class="form-input form-select" required aria-required="true">
+                                        <option value="" disabled selected></option>
+                                        <option value="remote">Remote</option>
+                                        <option value="hybrid">Hybrid</option>
+                                        <option value="onsite">Onsite</option>
+                                    </select>
+                                    <label for="jobType" class="form-label">Job Type <span class="label-required">*</span></label>
+                                    <span class="select-chevron" aria-hidden="true">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </div>
+
+                                <!-- Experience Required -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="experienceRequired" name="experience_required" class="form-input" placeholder=" ">
+                                    <label for="experienceRequired" class="form-label">Experience Required (e.g. 5+ years)</label>
+                                </div>
+
+                                <!-- Location -->
+                                <div class="input-wrapper">
+                                    <input type="text" id="jobLocation" name="job_location" class="form-input" placeholder=" ">
+                                    <label for="jobLocation" class="form-label">Job Location</label>
+                                </div>
+                            </div>
+
+                            <!-- Job Description -->
+                            <div class="input-wrapper input-wrapper--textarea input-wrapper--job-desc">
+                                <textarea
+                                    id="jobDescription"
+                                    name="job_description"
+                                    class="form-input form-textarea form-textarea--large"
+                                    rows="8"
+                                    placeholder=" "
+                                    maxlength="5000"
+                                    aria-describedby="charCounter"
+                                ></textarea>
+                                <label for="jobDescription" class="form-label">Paste Job Description</label>
+                                <div class="textarea-footer">
+                                    <span class="char-counter" id="charCounter">
+                                        <span id="charCount">0</span> / 5,000 characters
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- ================================= -->
+                    <!-- STEP 4: REVIEW & ANALYZE          -->
+                    <!-- ================================= -->
+                    <fieldset class="step-panel" id="stepPanel4" data-step-panel="4" disabled>
+                        <legend class="step-panel-legend">Review &amp; Analyze</legend>
+                        <div class="step-panel-inner">
+                            <div class="step-header">
+                                <h2 class="step-heading">Review your submission</h2>
+                                <p class="step-description">Double-check everything below. When you're ready, run the AI-powered analysis.</p>
+                            </div>
+
+                            <!-- Summary Cards -->
+                            <div class="review-cards-grid">
+                                <!-- Candidate Summary Card -->
+                                <article class="review-card" id="reviewCardCandidate">
+                                    <div class="review-card-header">
+                                        <div class="review-card-icon review-card-icon--candidate">
+                                            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                                <circle cx="10" cy="7" r="4" stroke="currentColor" stroke-width="1.6"/>
+                                                <path d="M2 18C2 14.6863 5.58172 12 10 12C14.4183 12 18 14.6863 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                        <h3 class="review-card-title">Candidate Details</h3>
+                                    </div>
+                                    <div class="review-card-body" id="reviewCandidateBody">
+                                        <p class="review-card-placeholder">Complete Step 1 to see your details here.</p>
+                                    </div>
+                                </article>
+
+                                <!-- Resume Summary Card -->
+                                <article class="review-card" id="reviewCardResume">
+                                    <div class="review-card-header">
+                                        <div class="review-card-icon review-card-icon--resume">
+                                            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                                <rect x="3" y="1" width="14" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
+                                                <line x1="6" y1="6" x2="14" y2="6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                                <line x1="6" y1="9" x2="14" y2="9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                                <line x1="6" y1="12" x2="11" y2="12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                                            </svg>
+                                        </div>
+                                        <h3 class="review-card-title">Resume</h3>
+                                    </div>
+                                    <div class="review-card-body" id="reviewResumeBody">
+                                        <p class="review-card-placeholder">Upload your resume in Step 2.</p>
+                                    </div>
+                                </article>
+
+                                <!-- Job Details Summary Card -->
+                                <article class="review-card" id="reviewCardJob">
+                                    <div class="review-card-header">
+                                        <div class="review-card-icon review-card-icon--job">
+                                            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                                <rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                                                <path d="M7 4V2.5C7 1.67157 7.67157 1 8.5 1H11.5C12.3284 1 13 1.67157 13 2.5V4" stroke="currentColor" stroke-width="1.6"/>
+                                                <rect x="8" y="8" width="4" height="4" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                                            </svg>
+                                        </div>
+                                        <h3 class="review-card-title">Target Job</h3>
+                                    </div>
+                                    <div class="review-card-body" id="reviewJobBody">
+                                        <p class="review-card-placeholder">Add job details in Step 3.</p>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <!-- Pre-flight Checklist -->
+                            <div class="checklist-card">
+                                <h4 class="checklist-title">Pre-flight Checklist</h4>
+                                <ul class="checklist-items">
+                                    <li class="checklist-item" id="checkCandidate">
+                                        <span class="checklist-icon">
+                                            <svg class="icon-pending" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                                            </svg>
+                                            <svg class="icon-success" viewBox="0 0 20 20" fill="none" aria-hidden="true" hidden>
+                                                <circle cx="10" cy="10" r="9" fill="rgba(34,197,94,0.15)" stroke="#22C55E" stroke-width="1.5"/>
+                                                <path d="M6 10.5L8.5 13L14 7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                        <span class="checklist-label">Candidate information completed</span>
+                                    </li>
+                                    <li class="checklist-item" id="checkResume">
+                                        <span class="checklist-icon">
+                                            <svg class="icon-pending" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                                            </svg>
+                                            <svg class="icon-success" viewBox="0 0 20 20" fill="none" aria-hidden="true" hidden>
+                                                <circle cx="10" cy="10" r="9" fill="rgba(34,197,94,0.15)" stroke="#22C55E" stroke-width="1.5"/>
+                                                <path d="M6 10.5L8.5 13L14 7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                        <span class="checklist-label">Resume uploaded</span>
+                                    </li>
+                                    <li class="checklist-item" id="checkJobDesc">
+                                        <span class="checklist-icon">
+                                            <svg class="icon-pending" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                                            </svg>
+                                            <svg class="icon-success" viewBox="0 0 20 20" fill="none" aria-hidden="true" hidden>
+                                                <circle cx="10" cy="10" r="9" fill="rgba(34,197,94,0.15)" stroke="#22C55E" stroke-width="1.5"/>
+                                                <path d="M6 10.5L8.5 13L14 7" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                        <span class="checklist-label">Job description added</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- ================================= -->
+                    <!-- NAVIGATION BUTTONS                -->
+                    <!-- ================================= -->
+                    <div class="wizard-nav" id="wizardNav">
+                        <button
+                            type="button"
+                            class="btn btn--secondary btn--previous"
+                            id="prevBtn"
+                            disabled
+                            aria-label="Go to previous step"
+                        >
+                            <svg class="btn-icon-left" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <path d="M12 5L7 10L12 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Previous
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn--primary btn--next"
+                            id="nextBtn"
+                            aria-label="Go to next step"
+                        >
+                            Next
+                            <svg class="btn-icon-right" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <path d="M8 5L13 10L8 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn btn--analyze"
+                            id="analyzeBtn"
+                            hidden
+                            aria-label="Run AI resume analysis"
+                        >
+                            <svg class="btn-icon-left sparkle-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                <path d="M10 1L11.8 7.2L18 9L11.8 10.8L10 17L8.2 10.8L2 9L8.2 7.2L10 1Z" fill="currentColor"/>
+                            </svg>
+                            Analyze Resume
+                        </button>
+                    </div>
+
+                    <!-- Step indicator dots (mobile) -->
+                    <div class="wizard-dots" id="wizardDots" aria-hidden="true">
+                        <span class="dot dot--active" data-dot="1"></span>
+                        <span class="dot" data-dot="2"></span>
+                        <span class="dot" data-dot="3"></span>
+                        <span class="dot" data-dot="4"></span>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TOAST / NOTIFICATION CONTAINER               -->
+    <!-- ============================================ -->
+    <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true" hidden></div>
+</body>
+</html>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flashed-messages">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}

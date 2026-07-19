@@ -1,0 +1,514 @@
+/* ============================================================
+   ResumeAI Pro — Results Dashboard (Premium Edition)
+   Dark Theme • Glassmorphism • AI Analytics • VFX
+   ============================================================ */
+
+/* 1. CSS Variables
+   ============================================================ */
+:root {
+    --color-bg: #050816;
+    --color-card: #111827;
+    --color-primary: #2563EB;
+    --color-primary-glow: rgba(37, 99, 235, 0.55);
+    --color-accent: #60A5FA;
+    --color-accent-soft: rgba(96, 165, 250, 0.2);
+    --color-success: #22C55E;
+    --color-success-soft: rgba(34, 197, 94, 0.12);
+    --color-warning: #F59E0B;
+    --color-warning-soft: rgba(245, 158, 11, 0.12);
+    --color-danger: #EF4444;
+    --color-danger-soft: rgba(239, 68, 68, 0.12);
+    --color-text: #F8FAFC;
+    --color-text-secondary: #CBD5E1;
+    --color-text-muted: #94A3B8;
+    --color-border: rgba(255, 255, 255, 0.06);
+    --color-border-glow: rgba(37, 99, 235, 0.35);
+    --color-glass-bg: rgba(17, 24, 39, 0.55);
+    --color-glass-border: rgba(255, 255, 255, 0.04);
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+    --radius-2xl: 2rem;
+    --radius-full: 9999px;
+    --shadow-glass: 0 20px 40px -12px rgba(0, 0, 0, 0.45);
+    --shadow-glow-sm: 0 0 12px rgba(37, 99, 235, 0.25);
+    --transition-smooth: 0.25s cubic-bezier(0.2, 0, 0, 1);
+    --max-width: 1200px;
+}
+
+/* 2. Base & Background
+   ============================================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+}
+
+body.results-body {
+    font-family: var(--font-family);
+    background: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    line-height: 1.5;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated background with floating orbs and grid */
+body.results-body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(96,165,250,0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 40% 80%, rgba(139,92,246,0.06) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+    animation: gradientShift 15s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Subtle grid overlay */
+body.results-body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+}
+
+/* 3. Layout
+   ============================================================ */
+.results-main {
+    position: relative;
+    z-index: 2;
+    padding-top: 4.5rem;
+}
+
+.dashboard-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* 4. Glass Card Base
+   ============================================================ */
+.glass-card {
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-glass);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: 0 30px 45px -15px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(37,99,235,0.15) inset;
+}
+
+.glass-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.glass-card:hover::after {
+    opacity: 1;
+}
+
+/* 5. Navigation Bar
+   ============================================================ */
+.results-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0.75rem 2rem;
+}
+
+.nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.nav-brand strong {
+    background: linear-gradient(135deg, #3B82F6, #60A5FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 6. Hero Section
+   ============================================================ */
+.hero-section {
+    background: linear-gradient(135deg, rgba(37,99,235,0.1) 0%, rgba(17,24,39,0.4) 100%);
+    border: 1px solid rgba(37,99,235,0.2);
+    padding: 2.5rem;
+    border-radius: var(--radius-2xl);
+}
+
+.hero-heading {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(to right, #F8FAFC, #60A5FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+}
+
+.hero-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.meta-item {
+    background: rgba(255,255,255,0.03);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.meta-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.meta-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* 7. ATS Score & Quick Metrics
+   ============================================================ */
+.score-section {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+}
+
+.score-card {
+    padding: 2rem;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(37,99,235,0.08) 0%, transparent 80%);
+}
+
+.score-visual {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 1.5rem auto;
+}
+
+.score-percentage {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(to bottom, #4ADE80, #22C55E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.quick-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.metric-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem;
+    transition: all 0.3s;
+}
+
+.metric-card:hover {
+    background: rgba(255,255,255,0.05);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-sm);
+}
+
+.metric-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(96,165,250,0.12);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.metric-number {
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.metric-subtitle {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+/* 8. Section Titles & Dividers
+   ============================================================ */
+.card-heading {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.card-heading::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+    border-radius: 2px;
+}
+
+/* 9. Skill Chips
+   ============================================================ */
+.skill-chip {
+    padding: 0.4rem 1.2rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: default;
+}
+
+.skill-chip:hover {
+    transform: scale(1.05);
+}
+
+.skill-chip--found {
+    background: var(--color-success-soft);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #4ADE80;
+}
+
+.skill-chip--missing {
+    background: var(--color-danger-soft);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #F87171;
+}
+
+/* 10. Strengths & Weaknesses List
+   ============================================================ */
+.checklist-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.check-icon {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 11. AI Suggestions
+   ============================================================ */
+.suggestion-item {
+    background: rgba(96,165,250,0.05);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid var(--color-primary);
+}
+
+/* 12. Experience & Education
+   ============================================================ */
+.experience-score, .education-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.score-badge {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #60A5FA, #3B82F6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 13. Salary Cards
+   ============================================================ */
+.salary-levels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.salary-level {
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.salary-level:hover {
+    background: rgba(37,99,235,0.05);
+    transform: translateY(-4px);
+}
+
+.salary-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #4ADE80;
+}
+
+/* 14. Career Roadmap
+   ============================================================ */
+.roadmap-step {
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    transition: 0.2s;
+}
+
+.roadmap-step:hover {
+    background: rgba(255,255,255,0.05);
+    transform: translateX(5px);
+}
+
+.step-number {
+    background: linear-gradient(135deg, var(--color-primary), #1D4ED8);
+    box-shadow: 0 0 14px var(--color-primary-glow);
+}
+
+/* 15. Chart Containers
+   ============================================================ */
+.chart-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-xl);
+}
+
+.chart-card canvas {
+    margin-top: 1rem;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+}
+
+/* 16. Buttons & Actions
+   ============================================================ */
+.btn {
+    font-weight: 600;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn--primary {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.btn--primary:hover {
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.6);
+}
+
+.btn--secondary {
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.btn--secondary:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+/* 17. Footer
+   ============================================================ */
+.results-footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 2rem;
+}
+
+/* 18. Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+    .score-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .two-col-grid {
+        grid-template-columns: 1fr;
+    }
+    .salary-levels {
+        grid-template-columns: 1fr;
+    }
+}
